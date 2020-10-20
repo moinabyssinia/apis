@@ -16,14 +16,17 @@ var request = new OAuth.OAuth(
     header
 );
 request.get(
-    'https://weather-ydn-yql.media.yahoo.com/forecastrss?location=orlando,fl&format=json',
+    'https://weather-ydn-yql.media.yahoo.com/forecastrss?location=orlando,fl?&format=json',
     null,
     null,
     function (err, data, result) {
         if (err) {
             console.log(err);
         } else {
-            console.log(data)
+            // but this returns a giant string - not a JS object
+            // so parse it 
+            const parsedData = JSON.parse(data);
+            console.log(parsedData.current_observation);
         }
     }
 );
