@@ -5,15 +5,19 @@ const app = express();
 const request = require("request");
 const port = 3000;
 
+app.set("view engine","ejs");
+
+
+
 // routes
 app.get("/results", function(req, res){
-    request('http://www.omdbapi.com/?s=ethiopia&apikey=thewdb', function(error, response, body){
+    request('http://www.omdbapi.com/?s=uncle+tom&apikey=thewdb', function(error, response, body){
         if(!error && response.statusCode == 200){
             let parsedBody = JSON.parse(body);
             // console.log(parsedBody);
 
-            //to send parsedBody - take a look at the object first
-            res.send(parsedBody['Search'][3]);
+            //rendering results in html
+            res.render("results", {data: parsedBody});
         }
     })
 });

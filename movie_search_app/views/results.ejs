@@ -1,0 +1,8 @@
+<h1>Welcome!</h1>
+
+<!-- just dumping the data won't work -->
+<!-- <h2><%= data['Search'] %></h2>  -->
+
+<% data["Search"].forEach(function(element){ %>
+    <li><%= element.Title %></li>
+<% }); %>
