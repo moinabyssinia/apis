@@ -5,19 +5,26 @@ const app = express();
 const request = require("request");
 const port = 3000;
 
+//to make .ejs files default 
 app.set("view engine","ejs");
 
-
-
 // routes
-app.get("/results", function(req, res){
-    request('http://www.omdbapi.com/?s=uncle+tom&apikey=thewdb', function(error, response, body){
+
+// get the search page
+app.get("/", function(req, res){
+    res.render("search");
+})
+
+app.get("/results/:title", function(req, res){
+    // get the movie title as a variable to search
+    request(`http://www.omdbapi.com/?s=${req.params.title}&apikey=thewdb`, function(error, response, body){
+        console.log(typeof req.params.title);
         if(!error && response.statusCode == 200){
             let parsedBody = JSON.parse(body);
-            // console.log(parsedBody);
 
             //rendering results in html
-            res.render("results", {data: parsedBody});
+            //but also passing the data to the ejs file
+            res.render("results", {data: parsedBody, title: req.params.title});
         }
     })
 });

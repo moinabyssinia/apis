@@ -1,8 +1,10 @@
-<h1>Welcome!</h1>
+<h1>Movies containing the words <%= title %></h1>
 
 <!-- just dumping the data won't work -->
 <!-- <h2><%= data['Search'] %></h2>  -->
 
+
+<!-- use forEach to iterate -->
 <% data["Search"].forEach(function(element){ %>
     <li><%= element.Title %></li>
 <% }); %>
