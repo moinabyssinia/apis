@@ -6,6 +6,12 @@
 
 <!-- use forEach to iterate -->
 <% data["Search"].forEach(function(element){ %>
-    <p><strong><%= element.Title%></strong> - <i><%= element.Year%></i></p>
+    <p>
+        <strong><%= element.Title%></strong> - <i><%= element.Year%></i>
+    </p>
+
     <img src= <%=element.Poster%> alt="">
 <% }); %>
+
+<br>
+<a href="/"><strong>Search Again</strong></a>
